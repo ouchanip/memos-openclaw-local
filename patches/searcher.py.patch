@@ -1,0 +1,38 @@
+# MemOS Searcher Patch for Neo4j Community Edition
+#
+# Neo4j Community does not support fulltext search indexes.
+# The default searcher.py calls graph_store.search_by_fulltext() which
+# raises AttributeError on Neo4jCommunityGraphDB, killing ALL search
+# results (not just keyword search).
+#
+# This patch applies two fixes:
+#   1. Guard _retrieve_from_keyword with hasattr check
+#   2. Add try/except resilience in _retrieve_paths result collection
+#
+# Target file:
+#   src/memos/memories/textual/tree_text_memory/retrieve/searcher.py
+#
+# Apply manually — line numbers may vary by MemOS version.
+
+--- a/src/memos/memories/textual/tree_text_memory/retrieve/searcher.py
++++ b/src/memos/memories/textual/tree_text_memory/retrieve/searcher.py
+@@ -_retrieve_from_keyword method (around line 490)
+     ) -> list[tuple[TextualMemoryItem, float]]:
+         """Keyword/fulltext path that directly calls graph DB fulltext search."""
+ 
++        if not hasattr(self.graph_store, 'search_by_fulltext'):
++            return []
++
+         if memory_type not in ["All", "LongTermMemory", "UserMemory"]:
+             return []
+
+@@ -_retrieve_paths result collection (around line 430)
+-            results = []
+-            for t in tasks:
+-                results.extend(t.result())
++            results = []
++            for t in tasks:
++                try:
++                    results.extend(t.result())
++                except Exception as e:
++                    logger.warning(f"[SEARCH] Search path failed: {e}")

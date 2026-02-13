@@ -1,0 +1,17 @@
+{
+  "name": "memos-local-openclaw-plugin",
+  "version": "0.1.0",
+  "description": "OpenClaw lifecycle plugin for MemOS Cloud (add + recall memory)",
+  "type": "module",
+  "author": "MemTensor",
+  "license": "Apache-2.0",
+  "openclaw": {
+    "extensions": ["./index.js"]
+  },
+  "clawdbot": {
+    "extensions": ["./index.js"]
+  },
+  "moltbot": {
+    "extensions": ["./index.js"]
+  }
+}
