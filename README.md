@@ -33,7 +33,7 @@ OpenClaw Agent
 - [Neo4j Community](https://neo4j.com/download/) running on port 7687
 - [Ollama](https://ollama.ai/) running on port 11434 with:
   - An embedding model (default: `qwen3-embedding:0.6b`)
-  - A chat model (default: `llama3.2:latest`)
+  - A chat model (default: `gemma3:4b`)
 
 ## Quick Start
 
@@ -52,7 +52,7 @@ cp .env.example .env
 
 ```bash
 ollama pull qwen3-embedding:0.6b
-ollama pull llama3.2:latest
+ollama pull gemma3:4b
 ```
 
 ### 3. Clone MemOS and apply patches
@@ -147,7 +147,7 @@ The agent can then use `remember`, `recall`, and `status` commands.
 
 | Variable | Default | Description |
 |---|---|---|
-| `MOS_CHAT_MODEL` | `llama3.2:latest` | LLM for memory processing |
+| `MOS_CHAT_MODEL` | `gemma3:4b` | LLM for memory processing |
 | `MOS_EMBEDDER_MODEL` | `qwen3-embedding:0.6b` | Embedding model |
 | `EMBEDDING_DIMENSION` | `1024` | Must match your embedding model's output |
 | `NEO4J_PASSWORD` | — | Your Neo4j password |
