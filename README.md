@@ -1,10 +1,24 @@
 # MemOS + OpenClaw Local Integration
 
-Self-hosted [MemOS](https://github.com/MemTensor/MemOS) integration for [OpenClaw](https://github.com/openclaw/openclaw) with hybrid memory (auto-capture + agent skill).
+> **This is a community fork of the official [MemOS-Cloud-OpenClaw-Plugin](https://github.com/MemTensor/MemOS-Cloud-OpenClaw-Plugin) by [MemTensor](https://github.com/MemTensor), adapted for self-hosted MemOS instances.**
+> The original plugin works with [MemOS Cloud](https://www.memos.co/) — a managed service with authentication, dashboard, and zero setup.
+> This fork modifies API paths and response adapters to work with the self-hosted [MemOS](https://github.com/MemTensor/MemOS) API.
+
+## Cloud vs Self-Hosted — Which Should You Use?
+
+| | [MemOS Cloud (Official Plugin)](https://github.com/MemTensor/MemOS-Cloud-OpenClaw-Plugin) | Self-Hosted (This Fork) |
+|---|---|---|
+| **Setup** | Sign up and get an API key — done | Deploy MemOS + Qdrant + Neo4j + Ollama yourself |
+| **Maintenance** | Zero — managed by MemTensor | You manage updates, backups, infra |
+| **Data location** | MemOS Cloud servers | Your own machine — 100% local |
+| **Cost** | Cloud plan pricing | Free (your hardware + electricity) |
+| **Best for** | Quick start, production use, teams | Privacy-first, air-gapped environments, tinkerers |
+
+**If you just want long-term memory for your agents, start with the [official Cloud plugin](https://github.com/MemTensor/MemOS-Cloud-OpenClaw-Plugin).** It's simpler, maintained by the MemOS team, and works out of the box. This fork exists for users who need to keep all data on their own infrastructure.
 
 ## What This Is
 
-An OpenClaw lifecycle plugin that gives your AI agent **long-term memory** using a self-hosted MemOS instance. Conversations are automatically stored and recalled across sessions.
+A fork of the official OpenClaw plugin, adapted for self-hosted MemOS. It gives your AI agent **long-term memory** using a local MemOS instance. Conversations are automatically stored and recalled across sessions.
 
 **Hybrid Memory Design:**
 
@@ -191,6 +205,14 @@ docker logs memos-api --tail 30
 3. **Embedding dimension mismatch**: If you change embedding models, delete the Qdrant collection and restart.
 4. **WatchFiles hot-reload**: Can corrupt singleton state. Always do a full `down+up` after editing MemOS source files.
 
+## Credits
+
+This project is a fork of [MemOS-Cloud-OpenClaw-Plugin](https://github.com/MemTensor/MemOS-Cloud-OpenClaw-Plugin) by [MemTensor](https://github.com/MemTensor). All core plugin logic (lifecycle hooks, prompt injection, memory formatting) comes from the original. This fork only modifies the API layer (paths, authentication, response adapters) to work with self-hosted MemOS.
+
+- [MemOS](https://github.com/MemTensor/MemOS) — The Memory Operating System
+- [MemOS Cloud](https://www.memos.co/) — Managed MemOS service
+- [MemOS-Cloud-OpenClaw-Plugin](https://github.com/MemTensor/MemOS-Cloud-OpenClaw-Plugin) — The original official plugin
+
 ## License
 
-Apache-2.0 — Same as [MemOS](https://github.com/MemTensor/MemOS) and the original OpenClaw plugin.
+Apache-2.0 — Same as [MemOS](https://github.com/MemTensor/MemOS) and the [original OpenClaw plugin](https://github.com/MemTensor/MemOS-Cloud-OpenClaw-Plugin).
