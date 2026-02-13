@@ -7,7 +7,7 @@ services:
       context: ..
       dockerfile: docker/Dockerfile
     ports:
-      - "8002:8000"
+      - "8000:8000"
     env_file:
       - ../.env
     extra_hosts:

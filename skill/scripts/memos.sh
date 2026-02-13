@@ -2,7 +2,7 @@
 # memos.sh - MemOS Memory CLI for OpenClaw agents
 # Usage: memos.sh <command> [args]
 
-MEMOS_API="${MEMOS_API_URL:-http://localhost:8002}"
+MEMOS_API="${MEMOS_API_URL:-http://localhost:8000}"
 MEMOS_USER="${MEMOS_USER_ID:-openclaw-user}"
 
 case "$1" in
@@ -154,7 +154,7 @@ except: print('  Qdrant unreachable')
     echo "  memos.sh remember-pair 'What stack?' 'User prefers Next.js + Supabase'"
     echo ""
     echo "Environment variables:"
-    echo "  MEMOS_API_URL   MemOS API URL (default: http://localhost:8002)"
+    echo "  MEMOS_API_URL   MemOS API URL (default: http://localhost:8000)"
     echo "  MEMOS_USER_ID   MemOS user ID (default: openclaw-user)"
     ;;
 esac

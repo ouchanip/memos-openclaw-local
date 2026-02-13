@@ -3,7 +3,7 @@ import { join } from "node:path";
 import { homedir } from "node:os";
 import { setTimeout as delay } from "node:timers/promises";
 
-const DEFAULT_BASE_URL = "http://localhost:8002";
+const DEFAULT_BASE_URL = "http://localhost:8000";
 export const USER_QUERY_MARKER = "user\u200b原\u200b始\u200bquery\u200b：\u200b\u200b\u200b\u200b";
 const ENV_SOURCES = [
   { name: "openclaw", path: join(homedir(), ".openclaw", ".env") },

@@ -20,7 +20,7 @@ OpenClaw Agent
   ├── [before_agent_start] → MemOS /product/search → recall relevant memories
   └── [agent_end]          → MemOS /product/add    → store conversation
                                     ↓
-                              MemOS API (:8002)
+                              MemOS API (:8000)
                               ├── Qdrant (:6333) — vector search
                               ├── Neo4j  (:7687) — graph DB
                               └── Ollama (:11434) — embedding + LLM
@@ -95,7 +95,7 @@ docker compose -f docker-compose.override.yml up -d
 
 Verify it's running:
 ```bash
-curl http://localhost:8002/health
+curl http://localhost:8000/health
 ```
 
 ### 5. Install the OpenClaw plugin
@@ -114,7 +114,7 @@ cp -r plugin /path/to/memos-local-openclaw-plugin
       "memos-local-openclaw-plugin": {
         "enabled": true,
         "config": {
-          "baseUrl": "http://localhost:8002",
+          "baseUrl": "http://localhost:8000",
           "userId": "openclaw-user",
           "recallEnabled": true,
           "addEnabled": true,
@@ -157,7 +157,7 @@ The agent can then use `remember`, `recall`, and `status` commands.
 
 | Option | Default | Description |
 |---|---|---|
-| `baseUrl` | `http://localhost:8002` | MemOS API URL |
+| `baseUrl` | `http://localhost:8000` | MemOS API URL |
 | `userId` | `openclaw-user` | MemOS user identifier |
 | `captureStrategy` | `last_turn` | `last_turn` or `full_session` |
 | `includeAssistant` | `true` | Include assistant responses in memory |

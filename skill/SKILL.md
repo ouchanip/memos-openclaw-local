@@ -45,7 +45,7 @@ Search past memories when:
 
 | Component | Role |
 |---|---|
-| MemOS API (localhost:8002) | Memory management server |
+| MemOS API (localhost:8000) | Memory management server |
 | Neo4j (localhost:7687) | Graph DB (relationships) |
 | Qdrant (localhost:6333) | Vector DB (semantic search) |
 | Ollama (localhost:11434) | Embedding + LLM |
